@@ -3,9 +3,11 @@ import sqlite3
 
 app = Flask(__name__)
 
+DATABASE = os.path.join('/tmp', 'database.db')
+
 # Database setup
 def init_db():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS master (
@@ -36,7 +38,7 @@ def index():
 # CREATE and READ operations for Master
 @app.route('/master', methods=['GET', 'POST'])
 def master():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
     if request.method == 'POST':
@@ -55,7 +57,7 @@ def master():
 # UPDATE and DELETE operations for Master
 @app.route('/edit_master/<int:id>', methods=['GET', 'POST'])
 def edit_master(id):
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
     if request.method == 'POST':
@@ -73,7 +75,7 @@ def edit_master(id):
 
 @app.route('/delete_master/<int:id>')
 def delete_master(id):
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     cursor.execute('DELETE FROM master WHERE id = ?', (id,))
     conn.commit()
@@ -83,7 +85,7 @@ def delete_master(id):
 # CREATE and READ operations for Transaksi
 @app.route('/transaksi', methods=['GET', 'POST'])
 def transaksi():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
     if request.method == 'POST':
@@ -105,7 +107,7 @@ def transaksi():
 # UPDATE and DELETE operations for Transaksi
 @app.route('/edit_transaksi/<int:id>', methods=['GET', 'POST'])
 def edit_transaksi(id):
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
     if request.method == 'POST':
@@ -126,7 +128,7 @@ def edit_transaksi(id):
 
 @app.route('/delete_transaksi/<int:id>')
 def delete_transaksi(id):
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     cursor.execute('DELETE FROM transaksi WHERE id = ?', (id,))
     conn.commit()
@@ -136,7 +138,7 @@ def delete_transaksi(id):
 # Report route
 @app.route('/report')
 def report():
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
     cursor.execute('''
         SELECT master.name, master.description, transaksi.detail, transaksi.amount

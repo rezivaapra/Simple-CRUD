@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Edit Transaksi</title>
+</head>
+<body>
+    <h1>Edit Transaksi</h1>
+    <form method="POST">
+        <label for="master_id">Master:</label><br>
+        <select id="master_id" name="master_id" required>
+            {% for master in masters %}
+            <option value="{{ master[0] }}" {% if transaksi[1] == master[0] %}selected{% endif %}>{{ master[1] }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="detail">Detail:</label><br>
+        <input type="text" id="detail" name="detail" value="{{ transaksi[2] }}" required><br>
+        <label for="amount">Jumlah:</label><br>
+        <input type="number" id="amount" name="amount" value="{{ transaksi[3] }}" step="0.01" required><br>
+        <button type="submit">Update</button>
+    </form>
+    <a href="{{ url_for('transaksi') }}">Kembali ke Transaksi</a>
+</body>
+</html>
+

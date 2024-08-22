@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Aplikasi CRUD Sederhana</title>
+</head>
+<body>
+    <h1>Aplikasi CRUD Sederhana</h1>
+    <div class="menu">
+        <a href="{{ url_for('master') }}">Master</a>
+        <a href="{{ url_for('transaksi') }}">Transaksi</a>
+        <a href="{{ url_for('report') }}">Laporan</a>
+    </div>
+</body>
+</html>

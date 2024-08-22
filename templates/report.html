@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Laporan</title>
+</head>
+<body>
+    <h1>Laporan Data</h1>
+    <table border="1">
+        <tr>
+            <th>Master</th>
+            <th>Deskripsi</th>
+            <th>Detail Transaksi</th>
+            <th>Jumlah</th>
+        </tr>
+        {% for data in report_data %}
+        <tr>
+            <td>{{ data[0] }}</td>
+            <td>{{ data[1] }}</td>
+            <td>{{ data[2] }}</td>
+            <td>{{ data[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('index') }}">Kembali ke Beranda</a>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Edit Master</title>
+</head>
+<body>
+    <h1>Edit Master</h1>
+    <form method="POST">
+        <label for="name">Nama:</label><br>
+        <input type="text" id="name" name="name" value="{{ master[1] }}" required><br>
+        <label for="description">Deskripsi:</label><br>
+        <textarea id="description" name="description" required>{{ master[2] }}</textarea><br>
+        <button type="submit">Update</button>
+    </form>
+    <a href="{{ url_for('master') }}">Kembali ke Master</a>
+</body>
+</html>
